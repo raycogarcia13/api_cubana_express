@@ -33,8 +33,12 @@ app.use('/api/ofertas-recargas', ofertaRecargasRoutes);
 app.use('/api/recargas', recargaRoutes);
 
 // Conectar a MongoDB
-mongoose.connect(config.MONGODB_URI)
-    .then(() => console.log('Conectado a MongoDB'))
+const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
+mongoose.connect(config.MONGODB_URI, clientOptions)
+    .then(() => {
+        console.log('Conectado a MongoDB')
+        mongoose.connection.db.admin().command({ ping: 1 });
+    })
     .catch(err => console.error('Error conectando a MongoDB:', err));
 
 // Rutas
