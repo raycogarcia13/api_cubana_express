@@ -5,7 +5,7 @@ const Client = require('./models/Client');
 async function seedDatabase() {
     try {
         // Conectar a MongoDB
-        await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/cubana_express');
+        await mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://raycogarcia13_db_user:kronosk13@cubana.hwvluzo.mongodb.net/?appName=cubana');
         console.log('Conectado a MongoDB');
 
         // Eliminar datos existentes
