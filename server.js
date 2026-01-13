@@ -17,7 +17,20 @@ const ofertaRecargasRoutes = require('./routes/ofertaRecargasRoutes');
 const recargaRoutes = require('./routes/recargaRoutes');
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  credentials: true,
+  origin: function(origin, callback) {
+    // if (whitelist.indexOf(origin) !== -1) {
+    //   callback(null, true)
+    // } else {
+    //   callback(new Error('Not allowed by CORS'))
+    // }
+      callback(null, true)
+  },
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  "preflightContinue": true,
+  "optionsSuccessStatus": 204
+}));
 app.use(express.json());
 
 // Rutas
